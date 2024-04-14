@@ -1,4 +1,0 @@
-#Sun Apr 14 17:07:38 WEST 2024
-base.0=/Users/felipevieira/Documents/GitHub/BeeXplore/BeeGame/Library/Bee/Android/Prj/Mono2x/Gradle/launcher/build/intermediates/dex/release/mergeDexRelease/classes.dex
-renamed.0=classes.dex
-path.0=classes.dex
