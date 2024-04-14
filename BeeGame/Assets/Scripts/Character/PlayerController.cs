@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     // Player movement
     private Vector2 moveTouchStartPosition;
     private Vector2 moveInput;
+    private float verticalVelocity;
 
     private void Awake(){
         if(instance == null) instance = this;
@@ -194,6 +195,7 @@ public class PlayerController : MonoBehaviour
     private void MoveCamera() {
 
         Vector3 rayDir = tpCameraTransform.position - cameraPole.position;
+        verticalVelocity = -rayDir.y;
 
         Debug.DrawRay(cameraPole.position, rayDir, Color.red);
         // Check if the camera would be colliding with any obstacle
@@ -223,6 +225,9 @@ public class PlayerController : MonoBehaviour
         Vector2 movementDirection = moveInput.normalized * moveSpeed * Time.deltaTime;
         // Move relatively to the local transform's direction
         characterController.Move(transform.right * movementDirection.x + transform.forward * movementDirection.y);
+
+        Vector3 verticalMovement = transform.up * verticalVelocity;
+        characterController.Move(verticalMovement * Time.deltaTime);
     }
     
     public void ResetInput(){
