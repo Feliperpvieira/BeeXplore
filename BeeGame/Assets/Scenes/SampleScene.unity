@@ -454,8 +454,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 48
+  m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1374,9 +1374,9 @@ SceneRoots:
   - {fileID: 170279827}
   - {fileID: 969825737}
   - {fileID: 291267462}
-  - {fileID: 4518007141832461319}
   - {fileID: 835513265}
   - {fileID: 1092772350}
+  - {fileID: 4518007141832461319}
   - {fileID: 1428812957}
   - {fileID: 1770337063}
   - {fileID: 1888741805}
