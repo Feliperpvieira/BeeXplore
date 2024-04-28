@@ -119,3 +119,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: 5
+  particulasPontos: {fileID: 188106263451913748, guid: f2047d374b5674ac4879fe5f7653541d, type: 3}
