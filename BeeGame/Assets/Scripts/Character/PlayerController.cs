@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
 
-    public enum PlayerControlMode { FirstPerson, ThirdPerson}
+    public enum PlayerControlMode { FirstPerson, ThirdPerson }
     public PlayerControlMode mode;
 
     // References
@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     // Touch detection
     private int leftFingerId, rightFingerId;
     private float halfScreenWidth;
+    //private float halfScreenHeight;
 
     // Camera control
     private Vector2 lookInput;
@@ -44,9 +45,11 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveInput;
     private float verticalVelocity;
 
-    private void Awake(){
-        if(instance == null) instance = this;
-        else if(instance != this) Destroy(gameObject);
+    //private float verticalY;
+
+    private void Awake() {
+        if (instance == null) instance = this;
+        else if (instance != this) Destroy(gameObject);
     }
 
     private void Start()
@@ -57,6 +60,7 @@ public class PlayerController : MonoBehaviour
 
         // only calculate once
         halfScreenWidth = Screen.width / 2;
+        //halfScreenHeight = Screen.height / 2;
 
         // calculate the movement input dead zone
         moveInputDeadZone = Mathf.Pow(Screen.height / moveInputDeadZone, 2);
@@ -81,6 +85,7 @@ public class PlayerController : MonoBehaviour
             // Ony look around if the right finger is being tracked
             //Debug.Log("Rotating");
             LookAround();
+            //MoveVertically(verticalY);
         }
 
         if (leftFingerId != -1)
@@ -120,6 +125,8 @@ public class PlayerController : MonoBehaviour
                     {
                         // Start tracking the rightfinger if it was not previously being tracked
                         rightFingerId = t.fingerId;
+
+                        //verticalY = t.position.y;
                     }
 
                     break;
@@ -147,19 +154,21 @@ public class PlayerController : MonoBehaviour
                     if (t.fingerId == rightFingerId)
                     {
                         lookInput = t.deltaPosition * cameraSensitivity * Time.deltaTime;
+                        //verticalY = t.position.y;
                     }
                     else if (t.fingerId == leftFingerId) {
 
                         // calculating the position delta from the start position
                         moveInput = t.position - moveTouchStartPosition;
                     }
-
+                   
                     break;
                 case TouchPhase.Stationary:
                     // Set the look input to zero if the finger is still
                     if (t.fingerId == rightFingerId)
                     {
                         lookInput = Vector2.zero;
+                        //verticalY = t.position.y;
                     }
                     break;
             }
@@ -178,7 +187,7 @@ public class PlayerController : MonoBehaviour
                 break;
             case PlayerControlMode.ThirdPerson:
                 // vertical (pitch) rotation is applied to the third person camera pole
-                cameraPitch = Mathf.Clamp(cameraPitch - lookInput.y, -90f, 90f);
+                cameraPitch = Mathf.Clamp(cameraPitch - lookInput.y, -75f, 75f);
                 cameraPole.localRotation = Quaternion.Euler(cameraPitch, 0, 0);
                 break;
         }
@@ -197,9 +206,17 @@ public class PlayerController : MonoBehaviour
         Vector3 rayDir = tpCameraTransform.position - cameraPole.position;
         verticalVelocity = -rayDir.y;
 
+        //-----\/ moving the character vertically
+        //Vector3 verticalMovement = transform.up * verticalVelocity;
+        //characterController.Move(verticalMovement * Time.deltaTime);
+        //Debug.Log("look input" + lookInput.y);
+        //Debug.Log("transform up" + transform.up);
+        //float verticalMovement = lookInput.y;
+        //characterController.Move(new Vector3(0, verticalMovement * Time.deltaTime, 0));
+
         Debug.DrawRay(cameraPole.position, rayDir, Color.red);
         // Check if the camera would be colliding with any obstacle
-        if (Physics.Raycast(cameraPole.position, rayDir, out RaycastHit hit, Mathf.Abs(maxCameraDistance), cameraObstacleLayers)){
+        if (Physics.Raycast(cameraPole.position, rayDir, out RaycastHit hit, Mathf.Abs(maxCameraDistance), cameraObstacleLayers)) {
             // Move the camera to the impact point
             tpCameraTransform.position = hit.point;
         } else {
@@ -226,11 +243,27 @@ public class PlayerController : MonoBehaviour
         // Move relatively to the local transform's direction
         characterController.Move(transform.right * movementDirection.x + transform.forward * movementDirection.y);
 
-        Vector3 verticalMovement = transform.up * verticalVelocity;
-        characterController.Move(verticalMovement * Time.deltaTime);
+
     }
-    
-    public void ResetInput(){
+
+    //tentativa de fazer o controle vertical ser de acordo com a posicao do dedo direito em relacao a vertical da tela (sobe no topo, desce embaixo)
+    //descartado pq nao dava pra girar a camera sem consequentemente subir ou descer a abelha
+
+    //private void MoveVertically(float posY)
+    //{
+    //    float newPosY = posY * Time.deltaTime * 1/100;
+
+    //    if (posY >= halfScreenHeight)
+    //    {
+    //        characterController.Move(new Vector3(0, newPosY, 0));
+    //    }
+    //    else if (posY < halfScreenHeight)
+    //    {
+    //        characterController.Move(new Vector3(0, -newPosY, 0));
+    //    }
+    //}
+
+        public void ResetInput(){
         // id = -1 means the finger is not being tracked
         leftFingerId = -1;
         rightFingerId = -1;
