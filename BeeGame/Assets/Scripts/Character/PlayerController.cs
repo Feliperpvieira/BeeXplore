@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveTouchStartPosition;
     private Vector2 moveInput;
     private float verticalVelocity;
+    public float upDownVelocity;
     private bool charMoveUp = false;
     private bool charMoveDown = false;
 
@@ -97,14 +98,14 @@ public class PlayerController : MonoBehaviour
             Move();
         }
 
-        if(charMoveUp == true)
+        if(charMoveUp == true) //if the up button is being pressed it moves up
         {
-            characterController.Move(new Vector3(0, 5 * Time.deltaTime, 0));
+            characterController.Move(new Vector3(0, upDownVelocity * Time.deltaTime, 0));
         }
 
         if (charMoveDown == true)
         {
-            characterController.Move(new Vector3(0, -5 * Time.deltaTime, 0));
+            characterController.Move(new Vector3(0, -upDownVelocity * Time.deltaTime, 0));
         }
     }
 
