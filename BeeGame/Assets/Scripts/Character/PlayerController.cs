@@ -44,6 +44,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveTouchStartPosition;
     private Vector2 moveInput;
     private float verticalVelocity;
+    private bool charMoveUp = false;
+    private bool charMoveDown = false;
 
     //private float verticalY;
 
@@ -93,6 +95,16 @@ public class PlayerController : MonoBehaviour
             // Ony move if the left finger is being tracked
             //Debug.Log("Moving");
             Move();
+        }
+
+        if(charMoveUp == true)
+        {
+            characterController.Move(new Vector3(0, 5 * Time.deltaTime, 0));
+        }
+
+        if (charMoveDown == true)
+        {
+            characterController.Move(new Vector3(0, -5 * Time.deltaTime, 0));
         }
     }
 
@@ -263,10 +275,30 @@ public class PlayerController : MonoBehaviour
     //    }
     //}
 
-        public void ResetInput(){
+    public void ResetInput(){
         // id = -1 means the finger is not being tracked
         leftFingerId = -1;
         rightFingerId = -1;
+    }
+
+    public void MoveUpTrue()
+    {
+        charMoveUp = true;
+    }
+
+    public void MoveUpFalse()
+    {
+        charMoveUp = false;
+    }
+
+    public void MoveDownTrue()
+    {
+        charMoveDown = true;
+    }
+
+    public void MoveDownFalse()
+    {
+        charMoveDown = false;
     }
 
 }
