@@ -38,7 +38,7 @@ public class CarAI : MonoBehaviour
 
     private Vector3 PostionToFollow = Vector3.zero;
     private int currentWayPoint;
-    private float AIFOV = 60;
+    private float AIFOV = 75; //used to be 60
     private bool allowMovement;
     private int NavMeshLayerBite;
     private List<Vector3> waypoints = new List<Vector3>();
