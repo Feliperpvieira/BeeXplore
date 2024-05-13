@@ -6,6 +6,8 @@ public class PolenColision : MonoBehaviour
 {
 
     public int points; //quantos pontos essa flor dá
+    public string falaRegina;
+    public GameObject falaDaReginaUI;
     [Header("Partículas emitidias")]
     public GameObject particulasPontos; //particulas a serem emitidas quando a flor é pega
     private bool alreadyCollected = false; //usado pra saber se a flor já foi coletada ou nao
@@ -21,6 +23,14 @@ public class PolenColision : MonoBehaviour
 
             Pontuacao.score = Pontuacao.score + points;
             alreadyCollected = true;
+        }
+    }
+
+    void OnParticleCollision(GameObject other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Pontuacao.score = Pontuacao.score + points;
         }
     }
 

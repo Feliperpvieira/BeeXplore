@@ -120,6 +120,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: 2
+  falaRegina: yum yum hot dog
+  falaDaReginaUI: {fileID: 5041641567030360560, guid: 959140dcbf9504f51ae8e89f9dbbbeba, type: 3}
   particulasPontos: {fileID: 188106263451913748, guid: f2047d374b5674ac4879fe5f7653541d, type: 3}
 --- !u!114 &5148876348644355116
 MonoBehaviour:
