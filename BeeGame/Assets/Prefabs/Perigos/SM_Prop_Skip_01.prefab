@@ -212,6 +212,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: -5
+  falaRegina: 
+  falaDaReginaUI: {fileID: 0}
   particulasPontos: {fileID: 188106263451913748, guid: 1d8b7e872f26d40ceba982984ec225fe, type: 3}
 --- !u!65 &6451742648211730102
 BoxCollider:

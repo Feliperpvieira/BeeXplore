@@ -26,12 +26,12 @@ public class PolenColision : MonoBehaviour
         }
     }
 
-    void OnParticleCollision(GameObject other)
+    void OnParticleCollision(GameObject Player)
     {
-        if (other.CompareTag("Player"))
-        {
+        
             Pontuacao.score = Pontuacao.score + points;
-        }
+            Instantiate(particulasPontos, transform.position, Quaternion.identity);
+        
     }
 
 }
