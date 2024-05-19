@@ -14,7 +14,7 @@ public class CarColision : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Instantiate(particulasPontos, transform.position, Quaternion.identity);
+            Instantiate(particulasPontos, transform.position, Quaternion.Euler(-90f, 0f, 0f));
             
             Pontuacao.score = Pontuacao.score + points;
         }

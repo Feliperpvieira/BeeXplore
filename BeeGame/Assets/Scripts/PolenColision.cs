@@ -16,7 +16,7 @@ public class PolenColision : MonoBehaviour
     {
         if (other.CompareTag("Player") && alreadyCollected == false)
         {
-            Instantiate(particulasPontos, transform.position, Quaternion.identity);
+            Instantiate(particulasPontos, transform.position, Quaternion.Euler(-90f, 0f, 0f));
 
             //gameObject.SetActive(false); //desativa o game object atual
             gameObject.GetComponent<Outline>().enabled = false; //desativa o outline
