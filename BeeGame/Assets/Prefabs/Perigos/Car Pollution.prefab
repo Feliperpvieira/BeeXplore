@@ -4866,7 +4866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 052131a7ed4d543fa8bf7b9515359860, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points: -10
+  points: -20
   particulasPontos: {fileID: 188106263451913748, guid: 1d8b7e872f26d40ceba982984ec225fe, type: 3}
 --- !u!114 &-8362715758309404927
 MonoBehaviour:

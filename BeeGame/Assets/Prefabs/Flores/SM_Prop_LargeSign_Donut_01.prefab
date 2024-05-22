@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b19b1668ae00f4074825287ee61ecb4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points: 2
+  points: 4
   falaRegina: donuts!!!
   falaDaReginaUI: {fileID: 5041641567030360560, guid: 959140dcbf9504f51ae8e89f9dbbbeba, type: 3}
   particulasPontos: {fileID: 188106263451913748, guid: f2047d374b5674ac4879fe5f7653541d, type: 3}
